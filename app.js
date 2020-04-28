@@ -29,7 +29,11 @@ app.post("/api/v1/contentmoderator", urlencodedParser, function (req, res) {
     contentModeratorUrl =
       "https://eastus.api.cognitive.microsoft.com/contentmoderator/moderate/v1.0/ProcessText/Screen";
   }
-  if (!req.body && !req.body.data) {
+  if (
+    req.body == undefined ||
+    req.body.data == undefined ||
+    Object.keys(req.body.data).length == 0
+  ) {
     res.send("Kindly specify the request body.");
     return;
   }
@@ -38,12 +42,12 @@ app.post("/api/v1/contentmoderator", urlencodedParser, function (req, res) {
 
 /**
  * This function hits the text content moderator api and returns the response.
- * 
+ *
  * API - Scans text for offensive content, sexually explicit or suggestive content, profanity, and personal data.
  *
  * @param {string} data
  * @param {Response object} res
- * 
+ *
  */
 function contentModerate(data, res) {
   var request = require("request");
