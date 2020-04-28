@@ -37,10 +37,13 @@ app.post("/api/v1/contentmoderator", urlencodedParser, function (req, res) {
 });
 
 /**
- * This function hits the text content moderator api and returns the resposne.
+ * This function hits the text content moderator api and returns the response.
+ * 
+ * API - Scans text for offensive content, sexually explicit or suggestive content, profanity, and personal data.
  *
  * @param {string} data
  * @param {Response object} res
+ * 
  */
 function contentModerate(data, res) {
   var request = require("request");
